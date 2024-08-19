@@ -1,0 +1,384 @@
+---
+const featuredJob = { 
+  title: 'Lead UI/UX Designer', 
+  experience: '5-7 years exp', 
+  location: 'Remote - Full Time', 
+  image: './Assets/Images/jobnear.jpeg'
+};
+
+const jobs = [
+  { 
+    title: 'Graphic Designer', 
+    experience: '3-5 years exp', 
+    location: 'Work from Home', 
+    image: './Assets/Images/graphic.jpeg' 
+  },
+  { 
+    title: 'Java Developer', 
+    experience: '2-4 years exp', 
+    location: 'Mumbai, INR 8-10 LPA', 
+    image: './Assets/Images/java.jpeg' 
+  },
+  {
+    title: 'Lead UI/UX Designer', 
+  experience: '5-7 years exp', 
+  location: 'Remote - Full Time', 
+  image: './Assets/Images/ui.jpeg'
+  }
+];
+---
+
+<script>
+  import {gsap} from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+
+  gsap.registerPlugin(  ScrollTrigger )
+
+
+  gsap.from('.jobs-container .featured-job-card',{
+   scale:0,
+    delay:2,
+    duration:2,
+    scrollTrigger :{
+       trigger:".featured-job-card",
+       scroller:"body",
+       start:"top 100%",
+       end:"top 50%",
+       scrub:3,
+    },
+   
+  })
+
+
+  gsap.from('.jobs-container .jobs-grid',{
+   x:200,
+    delay:2,
+    duration:2,
+    scrollTrigger :{
+       trigger:".featured-job-card",
+       scroller:"body",
+       start:"top 100%",
+       end:"top 50%",
+       scrub:3,
+
+    },
+   
+  })
+</script>
+
+
+<div class="about">
+  <div class="first">
+    <h3>Trusted by 5000+ Companies Worldwide </h3>
+  </div>
+
+  <div class="companies">
+    <img src="./Assets/svg/google.svg" alt="google">
+    <img src="./Assets/svg/amazon.svg" alt="google">
+
+    <img src="./Assets/svg/Apple.png" alt="google" >
+    <img src="./Assets/svg/netflix.png" alt="google">
+  
+  </div>
+  <div class="card-section">
+    <section class="featured-jobs" id="featured-jobs">
+     
+      <div class="jobs-container">
+        <div class="featured-job-card">
+          <img src={featuredJob.image} alt={featuredJob.title} class="featured-job-image" />
+          <!-- <div class="featured-job-info">
+            <h3>{featuredJob.title}</h3>
+            <p>{featuredJob.experience}</p>
+            <p>{featuredJob.location}</p>
+          </div> -->
+        </div>
+        
+        <div class="jobs-grid">
+          <h2>Featured Jobs</h2>
+          <p>Explore popular job categories</p>
+          <div class="jobs-grid2">
+            {jobs.map(job => (
+              <div class="job-card">
+                <img src={job.image} alt={job.title} class="job-image" />
+                <div class="job-info">
+                  <h3>{job.title}</h3>
+                  <p>{job.experience}</p>
+                  <p>{job.location}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+  </div>
+  
+</div>
+
+<style>
+.about{
+  background-color: white;
+}
+
+
+  .first{
+    margin-top: 15rem;
+    align-items: center;
+    justify-content: center;
+    margin-left: 26rem;
+  }
+  .companies{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -1rem;
+  
+  }
+
+  .companies>img{
+    height: 10rem;
+    width: 10rem;
+    transition: transform 0.3s ease-in-out; 
+  }
+
+  .companies>svg{
+    height: 5rem;
+    width: 5rem;
+    transition: transform 0.3s ease-in-out; 
+  }
+  /* .companies>:nth-child(3){
+    mix-blend-mode: color-burn;
+  } */
+
+  .companies>:nth-child(1){
+    margin-right: 20px;
+  }
+
+  .companies>:nth-child(4){
+    margin-bottom: 21px;
+  }
+
+  .companies img:hover {
+  transform: scale(1.1); /* Scale the image to 110% */
+}
+
+  h3{
+    font-size: 1.3rem;
+    font-family: sans-serif;
+  }
+
+  .featured-jobs {
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+
+  .featured-jobs h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    margin-left: 5rem;
+    font-family: sans-serif;
+  }
+
+  .featured-jobs p{
+    margin-left: 5rem;
+    font-size: 1rem
+  }
+
+  .jobs-container {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr; /* Larger featured card on the left */
+    gap: 1rem;
+  }
+
+  .featured-job-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px; /* Make the featured card larger */
+  }
+
+  .featured-job-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .featured-job-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .featured-job-info {
+    padding: 1rem;
+  }
+
+  .featured-job-info h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  .featured-job-info p {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  .jobs-grid2 {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; /* Two smaller cards on the right */
+    gap: 1rem; 
+    display: flex;
+    margin-top: 4.5rem;
+    margin-left: 5rem;
+  }
+
+  .job-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    height: 200px; /* Keep the smaller cards a consistent smaller height */
+  }
+
+  .job-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .job-image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .job-info {
+    padding: 1rem;
+  }
+
+  .job-info h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+  }
+
+  .job-info p {
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: #666;
+  }
+   /* Media Queries for Mobile Screens */
+   @media (max-width: 768px) {
+    .about {
+      padding: 1rem;
+    }
+
+    .first {
+      margin-top: 5rem; /* Adjust margin for mobile screens */
+      margin-left: 0;
+    }
+
+    .companies {
+      margin-top: 1rem;
+    }
+
+    .companies > img {
+      height: 5rem;
+      width: 5rem;
+    }
+
+    .featured-jobs h2 {
+      font-size: 1.8rem;
+      margin-left: 0;
+    }
+
+    .featured-jobs p {
+      font-size: 0.875rem;
+      margin-left: 0;
+    }
+
+    .jobs-container {
+      grid-template-columns: 1fr; /* Single column layout on smaller screens */
+    }
+
+    .featured-job-card {
+      height: 200px; /* Adjust height for smaller screens */
+    }
+
+    .featured-job-image {
+      height: 60%;
+    }
+
+    .jobs-grid2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid for job cards */
+      gap: 1rem;
+      margin-top: 2rem;
+      margin-left: 0;
+    }
+
+    .job-card {
+      height: 150px; /* Adjust height for smaller screens */
+    }
+
+    .job-image {
+      height: 50%;
+    }
+
+    .job-info h3 {
+      font-size: 1rem;
+    }
+
+    .job-info p {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about {
+      padding: 1rem;
+      margin-left: 37px;
+      margin-right: -97px;
+    }
+
+    .first {
+      margin-top: 3rem; /* Further adjusted margin for very small screens */
+    }
+
+    .companies > img {
+      height: 4rem;
+      width: 4rem;
+    }
+
+    .featured-job-card {
+      height: 150px; /* Adjust height for very small screens */
+    }
+
+    .featured-job-image {
+      height: 50%;
+    }
+
+    .jobs-grid2 {
+      grid-template-columns: 1fr; /* Stack job cards vertically on very small screens */
+    }
+
+    .job-info h3 {
+      font-size: 0.875rem;
+    }
+
+    .job-info p {
+      font-size: 0.625rem;
+    }
+  }
+
+</style>

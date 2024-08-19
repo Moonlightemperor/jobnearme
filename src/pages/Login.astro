@@ -1,0 +1,128 @@
+<!-- Login Modal Structure -->
+<div class="login-container" id="login">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Welcome Back!</h2>
+      <p>Log in to continue your journey.</p>
+    </div>
+    <form class="login-form">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="login-btn">Log In</button>
+    </form>
+    <div class="signup-link">
+      <p>Don't have an account? <a href="/Signup">Sign up here</a></p>
+      <p><a href="/" class="back-to-home">Back to Home</a></p>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-header h2 {
+  font-size: 28px;
+  color: #2C2E53;
+  margin-bottom: 10px;
+}
+
+.login-header p {
+  font-size: 16px;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.login-form .input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.login-form .input-group label {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.login-form .input-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9fafb;
+  transition: border-color 0.3s;
+}
+
+.login-form .input-group input:focus {
+  border-color: #3B82F6;
+  outline: none;
+}
+
+.login-btn {
+  background-color: #3B82F6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #2563EB;
+  transform: scale(1.03);
+}
+
+.signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.signup-link a {
+  color: #3B82F6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+</style>

@@ -1,0 +1,328 @@
+<script>
+  import {gsap} from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+
+  gsap.registerPlugin(  ScrollTrigger )
+
+
+  gsap.from('.right #about',{
+   scale:0,
+    delay:2,
+    duration:2,
+    scrollTrigger :{
+       trigger:"#about",
+       scroller:"body",
+       start:"top 70%",
+       end:"top 50%",
+       scrub:3,
+    },
+   
+  })
+
+
+  gsap.from('.left .leftimg',{
+   x:-200,
+    delay:2,
+    duration:2,
+    scrollTrigger :{
+       trigger:".leftimg",
+       scroller:"body",
+       start:"top 100%",
+       end:"top 50%",
+       scrub:3,
+
+    },
+   
+  })
+</script>
+
+
+<div class="about" id="about">
+  <div class="left">
+    <img src="./Assets/Images/about.jpeg" alt="about" class="leftimg">
+  </div>
+  <div class="right">
+    <section id="about" class="cursor-scale">
+      <h2 >Who We Are</h2>
+      <p>We are a leading job platform committed to connecting top talent with the best job opportunities. Our mission is to empower job seekers and employers with innovative tools that streamline the hiring process.</p>
+      
+      <div class="values">
+        <h3>Our Values</h3>
+        <ul>
+          <li><strong>Innovation:</strong> Constantly improving and innovating to deliver the best user experience.</li>
+          <li><strong>Integrity:</strong> We operate with transparency and honesty in all our dealings.</li>
+          <li><strong>User-Centricity:</strong> Our users are at the heart of everything we do.</li>
+          <li><strong>Excellence:</strong> Striving for excellence in our products and services.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="story">
+  <h3>Our Story</h3>
+  <p>Founded in [Year], our platform started with a vision to simplify the job search process. Over the years, we have grown into a trusted partner for thousands of job seekers and companies worldwide, offering a comprehensive suite of tools and resources.</p>
+</div>
+
+<div class="testimonials">
+  <h3>What Our Users Say</h3>
+  <div class="testimonial-grid">
+    <div class="testimonial">
+      <p>"This platform helped me land my dream job in just two weeks! The AI job matching is incredible."</p>
+      <p>- Jane Smith, Software Developer</p>
+    </div>
+    <div class="testimonial">
+      <p>"I never thought job searching could be so easy. The career coaching services are top-notch!"</p>
+      <p>- John Doe, Data Scientist</p>
+    </div>
+    <div class="testimonial">
+      <p>"Thanks to the resume building tool, I finally got noticed by top companies!"</p>
+      <p>- Mary Johnson, UX Designer</p>
+    </div>
+  </div>
+</div>
+
+<div class="cta">
+  <a href="/Signup" class="btn">Get in Touch</a>
+</div>
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background: linear-gradient(to bottom, #f9f9f9, #fff);
+    margin: 0;
+    padding: 0;
+  }
+
+  .about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 1rem;
+    gap: 2rem;
+  }
+
+  .left {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 400px;
+    width: 50%;
+  }
+
+  .left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  .left img:hover {
+    transform: scale(1.05);
+  }
+
+  .right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+
+  #about p {
+    max-width: 800px;
+    color: #555;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.7;
+  }
+
+  .values {
+    margin-top: 2rem;
+  }
+
+  .values h3 {
+    font-size: 2rem;
+    color: #3498db;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  .values ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .values li {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+  }
+
+  .values li strong {
+    color: #3498db;
+  }
+
+  .story, .testimonials {
+    padding: 4rem 1rem;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+
+  .story h3, .testimonials h3 {
+    font-size: 2.2rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+  }
+
+  .story p, .testimonial p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #555;
+    line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .testimonial {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta {
+    margin-top: 4rem;
+    text-align: center;
+  }
+
+  .cta .btn {
+    background-color: #3498db;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .cta .btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+   /* Media Queries for Mobile Responsiveness */
+   @media (max-width: 768px) {
+    .about {
+      padding: 2rem 1rem;
+      flex-wrap: wrap;
+    }
+
+    .left, .right {
+      width: 100%; /* Full width on small screens */
+      max-width: 100%;
+    }
+
+    .left {
+      margin-bottom: 2rem;
+    }
+
+    .right {
+      padding: 1rem;
+    }
+
+    #about h2 {
+      font-size: 2rem;
+    }
+
+    .values h3 {
+      font-size: 1.5rem;
+    }
+
+    .values ul {
+      grid-template-columns: 1fr; /* Stack values vertically on small screens */
+    }
+    
+    .story  {
+      margin-right: -82px;
+      margin-left: 43px;
+    }
+
+    .testimonials{
+      margin-right: -82px;
+      margin-left: 43px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about {
+      padding: 1rem;
+      flex-wrap: wrap;
+      margin-right: -101px;
+      margin-left: 31px;
+
+    }
+
+    .left img {
+      height: auto; /* Maintain aspect ratio on very small screens */
+    }
+
+    #about h2 {
+      font-size: 1.5rem;
+    }
+
+    .story h3, .testimonials h3 {
+      font-size: 1.8rem;
+    }
+
+    .story p, .testimonial p {
+      font-size: 0.875rem;
+    }
+
+    .cta .btn {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      margin-right: -121px;
+    }
+
+    .story {
+      margin-right: -82px;
+      margin-left: 43px;
+    }
+    .testimonials{
+      margin-right: -82px;
+      margin-left: 43px;
+    }
+  }
+</style>

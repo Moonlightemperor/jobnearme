@@ -1,0 +1,327 @@
+---
+import { gsap } from 'gsap'; // Import GSAP
+
+---
+
+<script >
+
+  import gsap from 'gsap';
+  function breakTheText() {
+  var h1Elements = document.querySelectorAll("h1.hero-text");
+  console.log(`Found ${h1Elements.length} <h1> elements`);
+
+  if (!h1Elements.length) {
+    console.error("No <h1> elements with the class 'hero-text' found on the page.");
+    return;
+  }
+
+  h1Elements.forEach((h1) => {
+    console.log("Processing <h1> element:", h1);
+    var h1text = h1.textContent || ""; 
+    var splittedText = h1text.split("");
+
+    var clutter = "";
+
+    var halfValue = Math.floor(splittedText.length / 2);
+    splittedText.forEach(function(elem, idx) {
+      if (idx < halfValue) {
+        clutter += `<span class="a">${elem}</span>`;
+      } else {
+        clutter += `<span class="b">${elem}</span>`;
+      }
+    });
+
+    h1.innerHTML = clutter;
+  });
+}
+
+breakTheText();
+
+gsap.from("h1.hero-text .a", {
+  y: 50,
+  duration: 0.7,
+  opacity: 0,
+  delay: 0.2,
+  stagger: 0.2,
+});
+
+gsap.from("h1.hero-text .b", {
+  y: 50,
+  duration: 0.7,
+  opacity: 0,
+  delay: 0.2,
+  stagger: -0.2,
+});
+
+
+
+</script>
+
+<div class="center" id="home">
+  <div class="first">
+    <div class="left">
+      <h1 class="hero-text">Find your dream job</h1>
+      <h1 class="hero-text">in one place</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque pariatur earum quam nemo impedit, adipisci repellat perferendis minus soluta saepe.</p>
+
+      <div class="btn">
+       <a href="#featured-jobs"><button class="btn1" >Find Now</button></a> 
+        <button  onclick="window.location.href='/Signup'">Talk To Us</button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="image-wrapper">
+        <div class="applicants-card">
+          <h4>Applicants</h4>
+          <div class="applicant-list" >
+            <img src="./Assets/Images/applicant1.jpg" alt="applicant1" class="applicant">
+            <img src="./Assets/Images/applicant2.jpg" alt="applicant2" class="applicant">
+            <img src="./Assets/Images/applicant3.jpg" alt="applicant3" class="applicant">
+            <img src="./Assets/Images/applicant4.jpg" alt="applicant4" class="applicant">
+            <div class="add-applicant">+</div>
+          </div>
+        </div>
+      </div>
+
+      <img src="./Assets/Images/first.png" alt="" class="main-image animate-size">
+    </div>
+  </div>
+</div>
+
+<style>
+
+body {
+  background: linear-gradient(180deg, #f0f0f0, #ffffff);
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+button, .applicants-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.center {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+}
+
+.first {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 87%;
+  height: 100%;
+}
+
+.left {
+  font-size: 27px;
+  width: 50%;
+  line-height: 1.5rem;
+}
+
+.left > p {
+  font-size: 12px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+border: none;
+background-color: #f97316;
+  margin-right: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn1 {
+  background-color: #3B82F6; /* New vibrant blue */
+  color: white;
+}
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+}
+
+.image-wrapper {
+  position: absolute;
+  bottom: -120px;
+  right: 40px;
+}
+
+.main-image {
+  max-width: 80%; /* Resize the image to create balance */
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.main-image:hover {
+  transform: scale(1.05);
+}
+
+.applicants-card {
+  width: 250px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.applicants-card h4 {
+  margin-bottom: 15px;
+  color: #2C2E53;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.applicant-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.applicant {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -10px;
+  z-index: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  object-position: center;
+}
+
+.applicant:first-child {
+  margin-left: 0;
+}
+
+.add-applicant {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #F97316; /* Accent color */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -10px;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-applicant:hover {
+  background-color: #404288;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .center {
+    /* flex-direction: column;  */
+    padding: 1rem;
+  }
+h1{
+  font-size: 28px;
+}
+  .first {
+    /* flex-direction: column;  */
+    width: 100%;
+    margin-left: 117px;
+    /* flex-wrap: wrap; */
+  }
+
+  .left {
+    text-align: center; /* Center text for mobile */
+    font-size: 22px;
+    width: 100%;
+  }
+
+  .left > p {
+    font-size: 14px;
+  }
+
+  .btn {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically on mobile */
+    align-items: center;
+  }
+
+  .right {
+    /* width: 100%; */
+    margin-top: 20px;
+    flex-direction: column; /* Stack items vertically on mobile */
+    align-items: center;
+  }
+
+  .image-wrapper {
+    position: static; /* Remove absolute positioning on mobile */
+    margin-top: 20px;
+  }
+
+  .main-image {
+    max-width: 90%; /* Resize image for medium screens */
+    margin-bottom: 20px; /* Add space below the image */
+  }
+}
+
+@media (max-width: 480px) {
+
+  .first{
+    flex-wrap: wrap;
+  }
+  .left {
+    font-size: 18px;
+  }
+  h1{
+  font-size: 28px;
+}
+  .left > p {
+    font-size: 12px;
+  }
+
+  .btn {
+    margin-top: 15px;
+    flex-direction: column; /* Stack buttons vertically on very small screens */
+  }
+
+  .main-image {
+    max-width: 100%; /* Ensure image scales properly on small screens */
+    margin-bottom: 20px; /* Add space below the image */
+  }
+}
+</style>

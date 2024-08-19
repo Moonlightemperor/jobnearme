@@ -1,0 +1,245 @@
+---
+import Cursor from "../../public/js/cursor.astro";
+---
+
+<script>
+  import { gsap } from "gsap";
+
+  // Function to detect if the device is a mobile device
+  function isMobile() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  }
+
+  // Query DOM elements
+  var cursor = document.querySelector(".curse");
+  var cursorScale = document.querySelectorAll(".cursor-scale");
+
+  // Check if cursor is found and not on mobile
+  if (cursor && !isMobile()) {
+    var mouseX = 0;
+    var mouseY = 0;
+
+    // Update cursor position
+    gsap.to(cursor, {
+      duration: 0.016,
+      repeat: -1,
+      onRepeat: function () {
+        gsap.set(cursor, {
+          css: {
+            left: mouseX + "px",
+            top: mouseY + "px",
+          },
+        });
+      },
+    });
+
+    // Update mouse position
+    window.addEventListener("mousemove", function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      console.log("Mouse position:", mouseX, mouseY); // Debugging
+    });
+
+    // Handle cursor scale elements
+    cursorScale.forEach(function (link) {
+      link.addEventListener('mouseleave', function () {
+        if (cursor) {
+          cursor.classList.remove('grow');
+          cursor.classList.remove('grow-small');
+          console.log('Classes removed: grow, grow-small');
+        }
+      });
+
+      link.addEventListener('mousemove', function () {
+        if (cursor) {
+          if (link.classList.contains('small')) {
+            cursor.classList.remove('grow'); // Remove grow if small is active
+            cursor.classList.add('grow-small');
+            console.log('Class added: grow-small');
+          } else {
+            cursor.classList.remove('grow-small'); // Remove grow-small if not small
+            cursor.classList.add('grow');
+            console.log('Class added: grow');
+          }
+        }
+      });
+    });
+  } else if (isMobile()) {
+    console.log("Custom cursor disabled on mobile.");
+  } else {
+    console.error("Cursor element not found.");
+  }
+</script>
+
+
+<div class="curse"></div>
+<section id="services" class="cursor-scale" >
+  <h2 class="cursor-scale">Our Services</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="./Assets/Images/resume.jpeg" alt="Resume Building & Review" />
+      <h3 class="cursor-scale small">Resume Building & Review</h3>
+      <p class="cursor-scale small">
+        Create a standout resume with our builder tool and expert feedback.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="./Assets/Images/career.jpeg" alt="Career Coaching" />
+      <h3 class="cursor-scale small">Career Coaching</h3>
+      <p class="cursor-scale small">
+        Get personalized career advice and coaching from industry experts.
+      </p>
+    </div>
+    <div class="service-card">
+      <img src="./Assets/Images/interview.jpeg" alt="Interview Preparation" />
+      <h3 class="cursor-scale small">Interview Preparation</h3>
+      <p class="cursor-scale small">
+        Ace your interviews with our preparation tools and mock sessions.
+      </p>
+    </div>
+    <div class="service-card">
+      <img
+        src="./Assets/Images/salary.jpeg"
+        alt="Salary Insights & Negotiation"
+      />
+      <h3 class="cursor-scale small">Salary Insights & Negotiation</h3>
+      <p class="cursor-scale small">
+        Learn how to negotiate your pay and get insights into industry-standard
+        salaries.
+      </p>
+    </div>
+    <div class="service-card">
+      <img
+        src="./Assets/Images/networking.jpeg"
+        alt="Networking Opportunities"
+      />
+      <h3 class="cursor-scale small">Networking Opportunities</h3>
+      <p class="cursor-scale small">
+        Expand your network with our curated events and communities.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #services {
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+
+  .curse {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    margin-left: -20px;
+    margin-top: -20px;
+    border-radius: 50px;
+    border: 2px solid black;
+    transition: transform 0.2s ease;
+    transform-origin: center center;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  #services h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .grow  {
+    transform: scale(7);
+    background: #fff;
+    mix-blend-mode:difference;
+    border: none;
+  }
+  .grow-small {
+    transform: scale(4.5);
+    background: #fff;
+    mix-blend-mode:difference;
+    border: none;
+  }
+  .service-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    text-align: center;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .service-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+    /* Media Queries for Mobile Responsiveness */
+    @media (max-width: 768px) {
+    #services {
+      padding: 1rem;
+      margin-right: -129px;
+    }
+
+    #services h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+      margin: 0 auto; /* Center the grid container */
+      max-width: 90%; /* Add margin from left */
+    }
+
+    .service-card {
+      padding: 1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+    }
+
+    .service-card p {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .curse {
+      width: 15px;
+      height: 15px;
+    }
+    
+    #services h2 {
+      font-size: 1.25rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.125rem;
+    }
+
+    .service-card p {
+      font-size: 0.75rem;
+    }
+  }
+</style>

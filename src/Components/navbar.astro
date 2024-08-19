@@ -1,0 +1,292 @@
+---
+
+---
+<script>
+ // Get the modal
+const loginModal: HTMLElement | null = document.getElementById("login");
+
+// Get the button that opens the modal
+const loginBtn: HTMLElement | null = document.querySelector(".button1");
+
+// Get the <span> element that closes the modal
+const closeLoginModal: HTMLElement | null = document.querySelector(".close-login");
+
+// Check if the modal and button exist before adding event listeners
+if (loginModal && loginBtn) {
+  // When the user clicks the button, open the modal 
+  loginBtn.onclick = function() {
+    loginModal.style.display = "flex";
+  }
+
+  // If closeLoginModal exists, add the event listener
+  if (closeLoginModal) {
+    // When the user clicks on <span> (x), close the modal
+    closeLoginModal.onclick = function() {
+      loginModal.style.display = "none";
+    }
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event: MouseEvent) {
+    if (event.target === loginModal) {
+      loginModal.style.display = "none";
+    }
+  }
+}
+
+</script>
+
+
+<div class="navbar cursor-scale small">
+  <div class="left">
+     <img src="./Assets/Images/logo.png" alt="logo">
+  </div>
+  <div class="right">
+    <h4 class="nav-item">Home</h4>
+    <h4 class="nav-item">About</h4>
+    <h4 class="nav-item">Service</h4>
+    <h4 class="nav-item">Categories</h4>
+    <div class="login">
+      <button class="button1">Log in</button>
+      <button class="button2" onclick="window.location.href='/Signup'">Sign up</button>
+    </div>
+  </div>
+</div>
+
+<div class="login-container" id="login">
+  <div class="login-card">
+    <span class="close-login">&times;</span>
+    <div class="login-header">
+      <h2>Welcome Back!</h2>
+      <p>Log in to continue your journey.</p>
+    </div>
+    <form class="login-form">
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="login-btn">Log In</button>
+    </form>
+    <div class="signup-link">
+      <p>Don't have an account? <a href="/Signup">Sign up here</a></p>
+      <p><a href="/" class="back-to-home">Back to Home</a></p>
+    </div>
+  </div>
+</div>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 15px 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .left > img {
+    height: 50px;
+    width: 50px;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .nav-item {
+    margin: 0;
+    cursor: pointer;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-item:hover {
+    color: #3B82F6; /* Accent color on hover */
+  }
+
+  .nav-item:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #3B82F6; /* Accent color underline */
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+  }
+
+  .nav-item:hover:after {
+    width: 100%;
+  }
+
+  .login {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .button1 {
+    border: 2px solid transparent;
+    background-color: transparent;
+    color: #3B82F6;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .button1:hover {
+    color: #2563EB; /* Darker accent color on hover */
+  }
+
+  .button2 {
+    border: 2px solid #3B82F6;
+    color: white;
+    background-color: #3B82F6;
+    border-radius: 20px;
+    padding: 10px 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .button2:hover {
+    background-color: #2563EB;
+    border-color: #2563EB;
+  }
+
+  @media (max-width: 768px) {
+    .right {
+      gap: 20px;
+    }
+
+    .nav-item {
+      font-size: 14px;
+    }
+
+    .button2 {
+      padding: 8px 20px;
+    }
+  }
+
+  /* login */
+  /* body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+} */
+
+.login-container {
+  display: none; /* Hide by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.login-header h2 {
+  font-size: 28px;
+  color: #2C2E53;
+  margin-bottom: 10px;
+}
+
+.login-header p {
+  font-size: 16px;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.login-form .input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.login-form .input-group label {
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.login-form .input-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9fafb;
+  transition: border-color 0.3s;
+}
+
+.login-form .input-group input:focus {
+  border-color: #3B82F6;
+  outline: none;
+}
+
+.login-btn {
+  background-color: #3B82F6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #2563EB;
+  transform: scale(1.03);
+}
+
+.signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.signup-link a {
+  color: #3B82F6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+</style>

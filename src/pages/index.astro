@@ -1,0 +1,35 @@
+---
+import Navbar from "../Components/navbar.astro";
+import Content from "../Components/Content.astro"
+import Categories from "../Components/Categories.astro";
+import Services from "../Components/Services.astro"
+import About from "../Components/About.astro"
+import Footer from "../Components/Footer.astro"
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body> 
+		<Navbar/>
+		<Content/>
+		<Categories/>
+		<Services/>
+		<About/>
+		<Footer/>
+	</body>
+</html>
+
+<style>
+	body{
+		background-color: white
+	
+	}
+	
+
+</style>
