@@ -42,10 +42,10 @@ if (loginModal && loginBtn) {
      <img src="./Assets/Images/logo.png" alt="logo">
   </div>
   <div class="right">
-    <h4 class="nav-item">Home</h4>
-    <h4 class="nav-item">About</h4>
-    <h4 class="nav-item">Service</h4>
-    <h4 class="nav-item">Categories</h4>
+    <a href="/"><h4 class="nav-item">Home</h4></a>
+   <a href="#about"> <h4 class="nav-item">About</h4></a>
+   <a href="#services"><h4 class="nav-item">Service</h4></a> 
+    <a href="#featured-jobs"><h4 class="nav-item">Categories</h4></a>
     <div class="login">
       <button class="button1">Log in</button>
       <button class="button2" onclick="window.location.href='/Signup'">Sign up</button>
@@ -104,8 +104,10 @@ if (loginModal && loginBtn) {
     align-items: center;
     gap: 40px;
   }
-
-  .nav-item {
+a{
+  text-decoration: none;
+}
+   .nav-item {
     margin: 0;
     cursor: pointer;
     color: #333;
@@ -114,7 +116,7 @@ if (loginModal && loginBtn) {
     transition: color 0.3s ease;
   }
 
-  .nav-item:hover {
+   .nav-item:hover {
     color: #3B82F6; /* Accent color on hover */
   }
 
@@ -130,7 +132,7 @@ if (loginModal && loginBtn) {
     left: 0;
   }
 
-  .nav-item:hover:after {
+   .nav-item:hover:after {
     width: 100%;
   }
 
