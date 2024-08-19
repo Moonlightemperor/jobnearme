@@ -1,13 +1,10 @@
----
-import Cursor from "../../public/js/cursor.astro";
----
 
 <script>
   import { gsap } from "gsap";
 
   // Function to detect if the device is a mobile device
   function isMobile() {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    return "ontouchstart" in window || navigator.maxTouchPoints > 0;
   }
 
   // Query DOM elements
@@ -42,24 +39,24 @@ import Cursor from "../../public/js/cursor.astro";
 
     // Handle cursor scale elements
     cursorScale.forEach(function (link) {
-      link.addEventListener('mouseleave', function () {
+      link.addEventListener("mouseleave", function () {
         if (cursor) {
-          cursor.classList.remove('grow');
-          cursor.classList.remove('grow-small');
-          console.log('Classes removed: grow, grow-small');
+          cursor.classList.remove("grow");
+          cursor.classList.remove("grow-small");
+          console.log("Classes removed: grow, grow-small");
         }
       });
 
-      link.addEventListener('mousemove', function () {
+      link.addEventListener("mousemove", function () {
         if (cursor) {
-          if (link.classList.contains('small')) {
-            cursor.classList.remove('grow'); // Remove grow if small is active
-            cursor.classList.add('grow-small');
-            console.log('Class added: grow-small');
+          if (link.classList.contains("small")) {
+            cursor.classList.remove("grow"); // Remove grow if small is active
+            cursor.classList.add("grow-small");
+            console.log("Class added: grow-small");
           } else {
-            cursor.classList.remove('grow-small'); // Remove grow-small if not small
-            cursor.classList.add('grow');
-            console.log('Class added: grow');
+            cursor.classList.remove("grow-small"); // Remove grow-small if not small
+            cursor.classList.add("grow");
+            console.log("Class added: grow");
           }
         }
       });
@@ -71,9 +68,8 @@ import Cursor from "../../public/js/cursor.astro";
   }
 </script>
 
-
-<!-- <div class="curse"></div> -->
-<section id="services" class="cursor-scale" >
+<!-- <div class="curse"></div>  uncomment this to add the cursor animation -->
+<section id="services" class="cursor-scale">
   <h2 class="cursor-scale">Our Services</h2>
   <div class="services-grid">
     <div class="service-card">
@@ -154,16 +150,16 @@ import Cursor from "../../public/js/cursor.astro";
     max-width: 100%;
   }
 
-  .grow  {
+  .grow {
     transform: scale(7);
     background: #fff;
-    mix-blend-mode:difference;
+    mix-blend-mode: difference;
     border: none;
   }
   .grow-small {
     transform: scale(4.5);
     background: #fff;
-    mix-blend-mode:difference;
+    mix-blend-mode: difference;
     border: none;
   }
   .service-card {
@@ -195,11 +191,12 @@ import Cursor from "../../public/js/cursor.astro";
     font-size: 1rem;
     color: #666;
   }
-    /* Media Queries for Mobile Responsiveness */
-    @media (max-width: 768px) {
+  /* Media Queries for Mobile Responsiveness */
+  @media (max-width: 768px) {
     #services {
       padding: 1rem;
-      margin-right: -129px;
+      margin-right: -12rem;
+      margin-left: 1rem;
     }
 
     #services h2 {
@@ -231,7 +228,7 @@ import Cursor from "../../public/js/cursor.astro";
       width: 15px;
       height: 15px;
     }
-    
+
     #services h2 {
       font-size: 1.25rem;
     }
