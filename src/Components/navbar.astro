@@ -1,54 +1,20 @@
----
-
----
-<script>
- // Get the modal
-const loginModal: HTMLElement | null = document.getElementById("login");
-
-// Get the button that opens the modal
-const loginBtn: HTMLElement | null = document.querySelector(".button1");
-
-// Get the <span> element that closes the modal
-const closeLoginModal: HTMLElement | null = document.querySelector(".close-login");
-
-// Check if the modal and button exist before adding event listeners
-if (loginModal && loginBtn) {
-  // When the user clicks the button, open the modal 
-  loginBtn.onclick = function() {
-    loginModal.style.display = "flex";
-  }
-
-  // If closeLoginModal exists, add the event listener
-  if (closeLoginModal) {
-    // When the user clicks on <span> (x), close the modal
-    closeLoginModal.onclick = function() {
-      loginModal.style.display = "none";
-    }
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event: MouseEvent) {
-    if (event.target === loginModal) {
-      loginModal.style.display = "none";
-    }
-  }
-}
-
-</script>
-
-
 <div class="navbar cursor-scale small">
   <div class="left">
-     <img src="./Assets/Images/logo.png" alt="logo">
+    <img src="./Assets/Images/logo.png" alt="logo">
   </div>
   <div class="right">
-    <a href="/"><h4 class="nav-item">Home</h4></a>
-   <a href="#about"> <h4 class="nav-item">About</h4></a>
-   <a href="#services"><h4 class="nav-item">Service</h4></a> 
-    <a href="#featured-jobs"><h4 class="nav-item">Categories</h4></a>
-    <div class="login">
-      <button class="button1">Log in</button>
-      <button class="button2" onclick="window.location.href='/Signup'">Sign up</button>
+    <div class="menu-icon" id="menuIcon">
+      &#9776; <!-- Hamburger Icon -->
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="/"><h4 class="nav-item">Home</h4></a>
+      <a href="#about"><h4 class="nav-item">About</h4></a>
+      <a href="#services"><h4 class="nav-item">Service</h4></a>
+      <a href="#featured-jobs"><h4 class="nav-item">Categories</h4></a>
+      <div class="login">
+        <button class="button1">Log in</button>
+        <button class="button2" onclick="window.location.href='/Signup'">Sign up</button>
+      </div>
     </div>
   </div>
 </div>
@@ -77,6 +43,8 @@ if (loginModal && loginBtn) {
     </div>
   </div>
 </div>
+
+
 <style>
   body {
     font-family: 'Poppins', sans-serif;
@@ -99,15 +67,23 @@ if (loginModal && loginBtn) {
     width: 50px;
   }
 
+  .menu-icon {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
   .right {
     display: flex;
     align-items: center;
     gap: 40px;
   }
-a{
-  text-decoration: none;
-}
-   .nav-item {
+
+  a {
+    text-decoration: none;
+  }
+
+  .nav-item {
     margin: 0;
     cursor: pointer;
     color: #333;
@@ -116,7 +92,7 @@ a{
     transition: color 0.3s ease;
   }
 
-   .nav-item:hover {
+  .nav-item:hover {
     color: #3B82F6; /* Accent color on hover */
   }
 
@@ -132,7 +108,7 @@ a{
     left: 0;
   }
 
-   .nav-item:hover:after {
+  .nav-item:hover:after {
     width: 100%;
   }
 
@@ -169,126 +145,282 @@ a{
     border-color: #2563EB;
   }
 
+  /* Dropdown Menu */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #3B82F6;
+}
+
+.nav-links .login {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-links .button1 {
+  border: 2px solid transparent;
+  background-color: transparent;
+  color: #3B82F6;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links .button1:hover {
+  color: #2563EB;
+}
+/* 
+.nav-links .button2 {
+  border: 2px solid #3B82F6;
+  color: white;
+  background-color: #3B82F6;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links .button2:hover {
+  background-color: #2563EB;
+  border-color: #2563EB;
+} */
+  /* Media Queries for Responsive Design */
   @media (max-width: 768px) {
     .right {
-      gap: 20px;
+      position: relative;
+    }
+   
+    .menu-icon {
+    display: block;
+  }
+
+    .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  .nav-links a {
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    color: #3B82F6;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .nav-links a:hover {
+    background-color: #3B82F6;
+    color: white;
+  }
+
+  .nav-links .login {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .button1, .button2 {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+}
+
+
+  @media (max-width: 480px) {
+    .navbar {
+      padding: 10px;
+      width: 38rem;
     }
 
     .nav-item {
-      font-size: 14px;
+      font-size: 12px;
     }
 
+    .button1,
     .button2 {
-      padding: 8px 20px;
+      padding: 6px 12px;
+      font-size: 12px;
     }
   }
 
-  /* login */
-  /* body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f0f4f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-} */
+  /* Login Modal Styles */
+  .login-container {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+  }
 
-.login-container {
-  display: none; /* Hide by default */
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  justify-content: center;
-  align-items: center;
-}
+  .login-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
 
-.login-card {
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 40px;
-  max-width: 400px;
-  width: 100%;
-  text-align: center;
-}
+  .login-header h2 {
+    font-size: 28px;
+    color: #2C2E53;
+    margin-bottom: 10px;
+  }
 
-.login-header h2 {
-  font-size: 28px;
-  color: #2C2E53;
-  margin-bottom: 10px;
-}
+  .login-header p {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 30px;
+  }
 
-.login-header p {
-  font-size: 16px;
-  color: #6b7280;
-  margin-bottom: 30px;
-}
+  .login-form .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
 
-.login-form .input-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
+  .login-form .input-group label {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 5px;
+    display: block;
+  }
 
-.login-form .input-group label {
-  font-size: 14px;
-  color: #374151;
-  margin-bottom: 5px;
-  display: block;
-}
+  .login-form .input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+    color: #333;
+    background-color: #f9fafb;
+    transition: border-color 0.3s;
+  }
 
-.login-form .input-group input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #d1d5db;
-  font-size: 14px;
-  color: #333;
-  background-color: #f9fafb;
-  transition: border-color 0.3s;
-}
+  .login-form .input-group input:focus {
+    border-color: #3B82F6;
+    outline: none;
+  }
 
-.login-form .input-group input:focus {
-  border-color: #3B82F6;
-  outline: none;
-}
+  .login-btn {
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s, transform 0.3s;
+  }
 
-.login-btn {
-  background-color: #3B82F6;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s, transform 0.3s;
-}
+  .login-btn:hover {
+    background-color: #2563EB;
+    transform: scale(1.03);
+  }
 
-.login-btn:hover {
-  background-color: #2563EB;
-  transform: scale(1.03);
-}
+  .signup-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #6b7280;
+  }
 
-.signup-link {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #6b7280;
-}
+  .signup-link a {
+    color: #3B82F6;
+    text-decoration: none;
+    font-weight: 600;
+  }
 
-.signup-link a {
-  color: #3B82F6;
-  text-decoration: none;
-  font-weight: 600;
-}
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
 
-.signup-link a:hover {
-  text-decoration: underline;
-}
+
+  .nav-links.open {
+    display: flex;
+  }
 </style>
+
+<script>
+//   const hamburger: HTMLElement | null = document.getElementById('hamburger');
+// const navLinks: HTMLElement | null = document.getElementById('nav-links');
+
+
+  const menuIcon =document.getElementById("menuIcon");
+const navLinks = document.getElementById("navLinks");
+
+if (menuIcon && navLinks) {
+  menuIcon.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+}
+
+
+// Get the modal
+const loginModal: HTMLElement | null = document.getElementById("login");
+
+// Get the button that opens the modal
+const loginBtn: HTMLElement | null = document.querySelector(".button1");
+
+// Get the <span> element that closes the modal
+const closeLoginModal: HTMLElement | null = document.querySelector(".close-login");
+
+// Check if the modal and button exist before adding event listeners
+if (loginModal && loginBtn) {
+  // When the user clicks the button, open the modal 
+  loginBtn.onclick = function() {
+    loginModal.style.display = "flex";
+  }
+
+  // If closeLoginModal exists, add the event listener
+  if (closeLoginModal) {
+    // When the user clicks on <span> (x), close the modal
+    closeLoginModal.onclick = function() {
+      loginModal.style.display = "none";
+    }
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event: MouseEvent) {
+    if (event.target === loginModal) {
+      loginModal.style.display = "none";
+    }
+  }
+}
+
+
+
+</script>
